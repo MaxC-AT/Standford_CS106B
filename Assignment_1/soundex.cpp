@@ -124,7 +124,8 @@ void findMatchedSoundexes(string refcode, Vector<string>& databaseNames, Vector<
 }
 
 
-void printMatchedNames(Vector<string>& matchedNames) {
+void printMatchedNames(string soundcode, Vector<string>& matchedNames) {
+    cout << "Soundex code is " << soundcode << endl;
     cout << "Matches from database: " << matchedNames << endl;
 }
 
@@ -158,7 +159,7 @@ void soundexSearch(string filepath) {
         findMatchedSoundexes(soundcode, databaseNames, databaseSoundexes, matchedNames);
 
         matchedNames.sort();
-        printMatchedNames(matchedNames);
+        printMatchedNames(soundcode, matchedNames);
     }
     return;
 }
