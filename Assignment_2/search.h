@@ -2,6 +2,7 @@
 
 #include "map.h"
 #include "set.h"
+#include "vector.h"
 #include <string>
 
 // Prototypes to be shared with other modules
@@ -15,3 +16,5 @@ int buildIndex(std::string dbfile, Map<std::string, Set<std::string>>& index);
 Set<std::string> findQueryMatches(Map<std::string, Set<std::string>>& index, std::string query);
 
 void searchEngine(std::string dbfile);
+
+int readDBFile(std::string dbfile, Vector<std::string>& lines);

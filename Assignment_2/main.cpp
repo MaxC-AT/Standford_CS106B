@@ -20,7 +20,6 @@ int main()
     solveMaze(maze);
 
     searchEngine("res/website.txt");
-
     cout << endl << "All done!" << endl;
     return 0;
 }
