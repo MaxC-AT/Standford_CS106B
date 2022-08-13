@@ -23,8 +23,24 @@ void fillBlackTriangle(GWindow& window, GPoint one, GPoint two, GPoint three) {
  * TODO: Replace this comment with a descriptive function
  * header comment.
  */
+GPoint midGPoint(GPoint one, GPoint two) {
+    return GPoint((one.x + two.x)/2, (one.y + two.y)/2);
+}
+
 int drawSierpinskiTriangle(GWindow& window, GPoint one, GPoint two, GPoint three, int order) {
     /* TODO: Implement this function. */
+    if (order == 0) {
+        fillBlackTriangle(window, one, two, three);
+        return 0;
+    }
+
+    GPoint midOne = midGPoint(one, two);
+    GPoint midTwo = midGPoint(two, three);
+    GPoint midThree = midGPoint(three, one);
+
+    drawSierpinskiTriangle(window, one, midOne, midThree, order-1);
+    drawSierpinskiTriangle(window, midOne, two, midTwo, order-1);
+    drawSierpinskiTriangle(window, midThree, midTwo, three, order-1);
     return 0;
 }
 
