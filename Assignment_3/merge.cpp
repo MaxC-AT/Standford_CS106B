@@ -13,9 +13,22 @@ using namespace std;
  * TODO: Replace this comment with a descriptive function
  * header comment.
  */
+void concatQueue(Queue<int>& q1, Queue<int> q2) {
+    while (!q2.isEmpty()) q1.enqueue(q2.dequeue());
+}
+
 Queue<int> binaryMerge(Queue<int> a, Queue<int> b) {
     Queue<int> result;
     /* TODO: Implement this function. */
+    int num;
+    while (!a.isEmpty() && !b.isEmpty()) {
+        if (a.peek() < b.peek()) num = a.dequeue();
+        else num = b.dequeue();
+        result.enqueue(num);
+    }
+
+    concatQueue(result, a);
+    concatQueue(result, b);
     return result;
 }
 
@@ -40,9 +53,24 @@ Queue<int> naiveMultiMerge(Vector<Queue<int>>& all) {
  * TODO: Replace this comment with a descriptive function
  * header comment.
  */
+Queue<int> recMultiMergeHelper(Vector<Queue<int>>& all, int left, int right) {
+    Queue<int> result;
+    if (left > right) return result;
+    if (left == right) return all[left];
+    if (right - left == 1) return binaryMerge(all[left], all[right]);
+
+    int mid = (left + right) / 2;
+    Queue<int> leftQueue = recMultiMergeHelper(all, left, mid);
+    Queue<int> rightQueue = recMultiMergeHelper(all, mid+1, right);
+    result = binaryMerge(leftQueue, rightQueue);
+    return result;
+}
+
+
 Queue<int> recMultiMerge(Vector<Queue<int>>& all) {
     Queue<int> result;
     /* TODO: Implement this function. */
+    result = recMultiMergeHelper(all, 0, all.size()-1);
     return result;
 }
 
