@@ -61,7 +61,7 @@ void scoreBoardHelp(int row, int col, int& score, string currString, Grid<char>&
         int nextCol = neighbor[1];
         char nextChar = board[nextRow][nextCol];
         board[nextRow][nextCol] = '#';
-        scoreBoardHelp(neighbor[0], neighbor[1], score, currString + nextChar, board, lex, visitedWord);
+        scoreBoardHelp(nextRow, nextCol, score, currString + nextChar, board, lex, visitedWord);
         board[nextRow][nextCol] = nextChar;
     }
     return;
