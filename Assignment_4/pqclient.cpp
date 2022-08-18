@@ -33,9 +33,30 @@ void pqSort(Vector<DataPoint>& v) {
 /* TODO: Refer to pqclient.h for more information about what this function does, then
  * delete this comment.
  */
+DataPoint kickOutElement(PQArray& pq, DataPoint elem) {
+    if (elem.priority < pq.peek().priority) return elem;
+    pq.enqueue(elem);
+    return pq.dequeue();
+}
+
+
+Vector<DataPoint> convertPQArrayToVector(PQArray& pq) {
+    if (pq.size() == 0) return {};
+    Vector<DataPoint> vector(pq.size());
+    for (int i = pq.size()-1; i >= 0; i--) vector[i] = pq.dequeue();
+    return vector;
+}
+
+
 Vector<DataPoint> topK(istream& stream, int k) {
     /* TODO: Implement this function. */
-    return {};
+    PQArray pq;
+    DataPoint curr;
+    while (stream >> curr) {
+        if (pq.size() < k) pq.enqueue(curr);
+        else kickOutElement(pq, curr);
+    }
+    return convertPQArrayToVector(pq);
 }
 
 
