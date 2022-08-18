@@ -101,6 +101,8 @@ private:
 
     void swap(int indexA, int indexB);
 
+    void expand();
+
     /* Weird C++isms: C++ loves to make copies of things, which is usually a good thing but
      * for the purposes of this assignment requires some C++ knowledge we haven't yet covered.
      * This next line disables all copy functions to make sure you don't accidentally end up

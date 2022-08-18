@@ -33,8 +33,28 @@ PQArray::~PQArray() {
  * TODO: Replace this comment with a descriptive function
  * comment about your implementation of the function.
  */
+void PQArray::expand() {
+    _numAllocated *= 2;
+    DataPoint* newElements = new DataPoint[_numAllocated]();
+    for (int i = 0; i < _numFilled; i++) {
+        newElements[i] = _elements[i];
+    }
+   delete[] _elements;
+    _elements = newElements;
+}
+
+
 void PQArray::enqueue(DataPoint elem) {
     /* TODO: Implement this function. */
+    if (_numFilled == _numAllocated) expand();
+
+    int idx = _numFilled;
+    while (idx > 0 && elem.priority > _elements[idx-1].priority) {
+        _elements[idx] = _elements[idx-1];
+        idx--;
+    }
+    _elements[idx] = elem;
+    _numFilled++;
 }
 
 /*
