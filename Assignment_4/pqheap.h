@@ -95,6 +95,9 @@ public:
 
 private:
     /* TODO: Add whatever fields, types, and helper functions that you'd like! */
+    DataPoint* _elements;
+    int _numElements;
+    int _capacity;
 
     /* While not a strict requirement, we strongly recommend implementing the
      * helper functions declared below. They will make your code much cleaner, and
@@ -104,6 +107,12 @@ private:
     int getLeftChildIndex(int parent) const;
     int getRightChildIndex(int parent) const;
 
+    void swap(int indexA, int indexB);
+    void expand();
+    void bubbleUp();
+    void bubbleDown();
+    int whichChildToSwap(int parent, int leftChild, int rightChild) const;
+    double getPriorityByIndex(int index) const;
     /* Weird C++isms: C++ loves to make copies of things, which is usually a good thing but
      * for the purposes of this assignment requires some C++ knowledge we haven't yet covered.
      * This next line disables all copy functions to make sure you don't accidentally end up
