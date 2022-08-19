@@ -145,6 +145,7 @@ int PQHeap::getParentIndex(int child) const {
  */
 int PQHeap::getLeftChildIndex(int parent) const {
     /* TODO: Implement this function. */
+    if (parent < 0) return NONE;
     int leftChildIndex = parent * 2 + 1;
     if (leftChildIndex >= size()) return NONE;
     return leftChildIndex;
@@ -158,6 +159,7 @@ int PQHeap::getLeftChildIndex(int parent) const {
  */
 int PQHeap::getRightChildIndex(int parent) const {
     /* TODO: Implement this function. */
+    if (parent < 0) return NONE;
     int rightChildIndex = parent * 2 + 2;
     if (rightChildIndex >= size()) return NONE;
     return rightChildIndex;
